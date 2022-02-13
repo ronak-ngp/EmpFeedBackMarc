@@ -1,0 +1,27 @@
+.form-control {
+    width: 50%!important;
+}
+
+.form-label  
+{
+    width: 30%!important;
+}
+
+.card {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    background: #fff;
+    border: none;
+    height: 100%;
+    position: relative
+  }
+  
+  .container {
+    height: 100vh
+  }
+  
+  body {
+    background: #eee
+  }
+  
