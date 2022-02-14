@@ -16,7 +16,7 @@ const FeedBackSummary = () => {
 
     useEffect(() => {
         if (Employees[2]) {
-            setFeedBackEmpState([...Employees[2]].sort((a, b) => b.green - a.green) );
+            setFeedBackEmpState([...Employees[2]].sort((a,b) => a.orange - b.orange).sort((a,b) => a.red - b.red).sort((a, b) => b.green - a.green) );
         }
       }, [Employees[2], setFeedBackEmpState]);
 
