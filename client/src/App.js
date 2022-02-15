@@ -8,7 +8,7 @@ function App() {
     <Routes>
     <Route exact path='/' element={<EmployeeInfo></EmployeeInfo>}></Route>
     <Route exact path='/employeeFeedBack' element={<EmployeeFeedBack></EmployeeFeedBack>}></Route>
-    <Route exact path='/feedbacksummary/:id' element={<FeedBackSummary></FeedBackSummary>}></Route>
+    <Route exact path='/feedbacksummary' element={<FeedBackSummary></FeedBackSummary>}></Route>
     </Routes>
   );
 }

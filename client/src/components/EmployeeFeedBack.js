@@ -19,32 +19,36 @@ const EmployeeFeedBack = () => {
         setFeedBackState( FeedBackTypes.Feedbacks.map(elem => (
           {
             FeedBack: elem.val,
-            green: 0,
-            orange:0,
-            red:0,
+            green: false,
+            orange:false,
+            red:false,
             comment:""
           } )));
       }
     }, [FeedBackTypes.Feedbacks, setFeedBackState]);
 
     const handleChange = (e, feedBackType) => {
-      let result = [...feedbackState]; //<- copy roomRent into result
+      let result = [...feedbackState]; 
     
-      result = result.map((x) => { //<- use map on result to find element to update using id
-        if (x.FeedBack === feedBackType) x[e.target.name] = e.target.value;
+      result = result.map((x) => { 
+        if (x.FeedBack === feedBackType) {
+          x[e.target.name] = e.target.checked
+          if(e.target.name === "green") { x["orange"] = false; x["red"] = false  }
+          if(e.target.name === "orange") { x["green"] = false; x["red"] = false  }
+          if(e.target.name === "red") { x["orange"] = false; x["green"] = false  }
+          if(e.target.name === "comment") { x[e.target.name] = e.target.value}
+        };
         return x;
       });
-      setFeedBackState(result); //<- update roomRent with value edited
+      setFeedBackState(result); 
     };
 
     const handleSubmit = (e) => {
       e.preventDefault();
 
-      const id = Math.floor(Math.random() * 20);
-
-      const feedBackStateName = [{id},{name},[...feedbackState]];
+      const feedBackStateName = {name,FeedBacks:[...feedbackState]};
       dispatch(addFeedBackEmployee(feedBackStateName));
-      navigate(`/feedbacksummary/${id}`);
+      navigate(`/feedbacksummary`);
   }
 
   return (
@@ -74,14 +78,16 @@ const EmployeeFeedBack = () => {
       <div className='col w-25'>
       {employeeArray.FeedBack}
       </div>
-      <div className="col w-25 mx-2">
-      <input id="green" name="green" type="text" pattern="\d*" maxlength="1" value={employeeArray.green} onChange={(e) => handleChange(e, employeeArray.FeedBack)}   ></input>
+      <div className="col w-25 mx-2 checkbox  checkbox-circle">
+      <input className="form-check-input" type="checkbox" name="green" id="green" checked={employeeArray.green} onChange={(e) => handleChange(e, employeeArray.FeedBack)}/> 
+      
     </div>
-    <div className="col w-25  mx-2">
-    <input id="orange" name="orange" type="text" pattern="\d*" maxlength="1" value={employeeArray.orange} onChange={(e) => handleChange(e, employeeArray.FeedBack)}  ></input>
+    <div className="col w-25  mx-2 checkbox  checkbox-circle">
+    <input className="form-check-input" type="checkbox" name="orange" id="orange" checked={employeeArray.orange} onChange={(e) => handleChange(e, employeeArray.FeedBack)}/> 
+    
     </div>
-    <div className="col w-25   mx-2">
-    <input id="red" name="red" type="text" pattern="\d*" maxlength="1" value={employeeArray.red} onChange={(e) => handleChange(e, employeeArray.FeedBack)}   ></input>
+    <div className="col w-25   mx-2 checkbox  checkbox-circle">
+    <input className="form-check-input" type="checkbox" name="red" id="red" checked={employeeArray.red} onChange={(e) => handleChange(e, employeeArray.FeedBack)}/> 
     </div>
     <div className='col w-25 mx-2'>
     <textarea id="comment" name="comment" type="number" value={employeeArray.comment} onChange={(e) => handleChange(e,employeeArray.FeedBack)}  rows="2"></textarea>

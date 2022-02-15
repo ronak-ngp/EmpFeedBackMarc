@@ -1,24 +1,32 @@
 import React,{useEffect,useState} from 'react'
 import {useDispatch,useSelector } from 'react-redux';
-import {useParams} from 'react-router-dom'
 import { getFeedBack } from '../redux/actions';
 
 const FeedBackSummary = () => {
     const dispatch = useDispatch();
     const {Employees} = useSelector(state => state.data);
-    let {id} = useParams();
+    
     const [feedbackEmpState,setFeedBackEmpState] = useState([]);
     
     useEffect(() => {
-       dispatch(getFeedBack(id));
+      const timer = setTimeout(() => {
+        dispatch(getFeedBack());
+      }, 1000);
+  
+      return () => clearTimeout(timer);
+       
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[id])
+    },[])
+
+    console.log(Employees);
 
     useEffect(() => {
-        if (Employees[2]) {
-            setFeedBackEmpState([...Employees[2]].sort((a,b) => a.orange - b.orange).sort((a,b) => a.red - b.red).sort((a, b) => b.green - a.green) );
+        if (Employees) {
+            setFeedBackEmpState([...Employees].sort((a,b) => a.orange - b.orange).sort((a,b) => a.red - b.red).sort((a, b) => b.green - a.green) );
         }
-      }, [Employees[2], setFeedBackEmpState]);
+      }, [Employees, setFeedBackEmpState]);
+
+      
 
   return (
     <div className="d-flex justify-content-center align-items-center container">
@@ -47,7 +55,7 @@ const FeedBackSummary = () => {
   {feedbackEmpState.map((feedback,index) => {
     return (  <div key={index} className='row my-2 mx-3'>
       <div className='col w-25'>
-      {feedback.FeedBack}
+      {feedback.feedback}
       </div>
       <div className="col w-25 mx-2">
       {feedback.green}

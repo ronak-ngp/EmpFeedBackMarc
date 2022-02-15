@@ -54,10 +54,11 @@ export const addNameToState = (name) => {
     }
 }
 
+
 export const getFeedBack = (id) => {
   return async function(dispatch) {
     try{
-      const resp = await axios.get(`${process.env.REACT_APP_API}/fetchfeedback/${id}`);
+      const resp = await axios.get(`${process.env.REACT_APP_API}/fetchfeedback`);
       console.log(resp.data);
       dispatch(fetchFeedBack(resp.data));
     }catch(error){
