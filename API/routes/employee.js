@@ -39,9 +39,8 @@ router.get('/fetchfeedback',async (req,res)=>{
         let finalFeedBack = [];
       
         feedBs.map((feedb) => { 
-          console.log(feedb);
          (feedb).map((feedbacks) => { 
-
+          
                let dupFeedBack = finalFeedBack.find(fb => {
                 
                  return fb.feedback === feedbacks.FeedBack
@@ -54,10 +53,11 @@ router.get('/fetchfeedback',async (req,res)=>{
                  if(feedbacks.green) dupFeedBack.green = dupFeedBack.green + 1;
                  if(feedbacks.orange) dupFeedBack.orange = dupFeedBack.orange + 1;
                  if(feedbacks.red) dupFeedBack.red = dupFeedBack.red + 1;
-                 if(!feedbacks.comment === "")
+                 
+                 if(feedbacks.comment !== "")
                  { 
-                   dupFeedBack.comment = dupFeedBack.comment != "" ? 
-                   dupFeedBack.comment + "<br/>" + feedbacks.comment : feedbacks.comment
+                   dupFeedBack.Comment = dupFeedBack.Comment != "" ? 
+                   dupFeedBack.Comment + " \n " + feedbacks.comment : feedbacks.comment
                  }
                  return; 
                }

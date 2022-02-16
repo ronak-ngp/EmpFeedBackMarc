@@ -20,6 +20,10 @@
   .container {
     height: 100vh
   }
+
+  #p_wrap {
+    white-space: pre-line;
+  }
   
   body {
     background: #eee

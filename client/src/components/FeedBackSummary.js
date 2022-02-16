@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import {useDispatch,useSelector } from 'react-redux';
 import { getFeedBack } from '../redux/actions';
+import './employeeinfo.css'
 
 const FeedBackSummary = () => {
     const dispatch = useDispatch();
@@ -67,7 +68,7 @@ const FeedBackSummary = () => {
     {feedback.red}
     </div>
     <div className='col w-25 mx-2'>
-    <input type="textarea" readOnly="readonly" value={feedback.comment}></input>
+    <p id="p_wrap">{feedback.Comment}</p>
     </div>
   </div>)
   })}
