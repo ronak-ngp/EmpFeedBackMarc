@@ -25,15 +25,15 @@ router.get('/fetchfeedback',async (req,res)=>{
         const dirPath = './db';
         
         const files = fs.readdirSync(dirPath);
-        const feedBs = []
-        files.map((val, i) => {
+        
+      let feedBs = ( files.map((val) => {
             
             const file = fs.readFileSync(path.join(dirPath, val), 'utf8');
 
             const feedb = JSON.parse(file);
 
-            feedBs.push(feedb.FeedBacks);
-          });
+            return feedb;
+          }));
             
             
         let finalFeedBack = [];
@@ -70,6 +70,8 @@ router.get('/fetchfeedback',async (req,res)=>{
                finalFeedBack.push({feedback:feedbacks.FeedBack,green:green,orange:orange,red:red,Comment:feedbacks.comment});
           })
          });
+
+         {}
 
         let response = JSON.parse(JSON.stringify(finalFeedBack)); 
         res.json(response);
